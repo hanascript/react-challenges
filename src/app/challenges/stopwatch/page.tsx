@@ -24,7 +24,7 @@ export default function StopWatch() {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
         setTime(prevTime => prevTime + 1);
-      }, 100);
+      }, 1000);
     } else {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
