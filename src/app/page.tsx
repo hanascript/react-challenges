@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export default function Home() {
-  const challenges = [{ name: 'rock-paper-scissors' }, { name: 'stopwatch' }, { name: 'diceroller' }];
+  const challenges = [{ name: 'rock-paper-scissors' }, { name: 'stopwatch' }, { name: 'diceroller' }, {name: 'stop-light'}];
 
   return (
     <div className='h-screen flex flex-col items-center justify-center'>
