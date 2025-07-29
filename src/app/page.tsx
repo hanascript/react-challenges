@@ -7,6 +7,7 @@ export default function Home() {
     { name: 'diceroller' },
     { name: 'stop-light' },
     { name: 'random-quote' },
+    { name: 'gradient-tool' },
   ];
 
   return (
