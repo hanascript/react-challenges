@@ -4,9 +4,9 @@ import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function RandomQuote() {
-  const [quote, setQuote] = useState('');
+  const [quote, setQuote] = useState<string | null>();
   const [getQuote, setGetQuote] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchQuote = () => {
     fetch('https://api.gameofthronesquotes.xyz/v1/random')
@@ -17,6 +17,7 @@ export default function RandomQuote() {
 
   useEffect(() => {
     fetchQuote();
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {

@@ -8,6 +8,7 @@ export default function Home() {
     { name: 'stop-light' },
     { name: 'random-quote' },
     { name: 'gradient-tool' },
+    { name: 'tictactoe' },
   ];
 
   return (
