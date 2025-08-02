@@ -9,6 +9,7 @@ export default function Home() {
     { name: 'random-quote' },
     { name: 'gradient-tool' },
     { name: 'tictactoe' },
+    { name: 'whackamole' },
   ];
 
   return (

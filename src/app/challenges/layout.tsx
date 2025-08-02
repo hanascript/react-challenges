@@ -12,7 +12,7 @@ export default function ChallengesLayout({ children }: { children: React.ReactNo
           <ChevronLeft className='size-4' /> Go Back
         </Link>
       </div>
-      <main className='p-4 flex-1'>{children}</main>
+      <main className='flex-1'>{children}</main>
     </div>
   );
 }
