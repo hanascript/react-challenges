@@ -16,6 +16,7 @@ export default function WhackAMole() {
   ]);
 
   const RAT_SPAWN_RATE = 1000;
+  const GAME_DURATION = 10000;
 
   useEffect(() => {
     setBoard([
@@ -31,6 +32,14 @@ export default function WhackAMole() {
       ratRef.current = setInterval(() => {
         handleMouseSpawn();
       }, RAT_SPAWN_RATE);
+
+      setTimeout(() => {
+        setIsRunning(false);
+        setIsGameOver(true);
+        if (ratRef.current) {
+          clearInterval(ratRef.current);
+        }
+      }, GAME_DURATION);
     } else {
       if (ratRef.current) {
         clearInterval(ratRef.current);
@@ -40,9 +49,14 @@ export default function WhackAMole() {
 
   const handlePlay = () => {
     if (isRunning) {
-      setIsRunning(prev => !prev);
+      if (ratRef.current) {
+        clearInterval(ratRef.current);
+      }
+      setScore(0);
       setIsGameOver(false);
+      setIsRunning(prev => !prev);
     } else {
+      setIsGameOver(false);
       setBoard([
         [false, false, false, false],
         [false, false, false, false],
@@ -58,15 +72,6 @@ export default function WhackAMole() {
     const ratx = Math.floor(Math.random() * 4);
     const raty = Math.floor(Math.random() * 4);
 
-    const isGameOver = board.every(row => row.every(cell => cell === true));
-    console.log('rat spawn', isGameover);
-    if (isGameOver) {
-      setIsRunning(false);
-      setIsGameOver(true);
-      console.log('gameover');
-      return;
-    }
-
     if (board[ratx][raty] === true) {
       handleMouseSpawn();
     }
@@ -76,6 +81,14 @@ export default function WhackAMole() {
       newBoard[ratx][raty] = true;
       return newBoard;
     });
+
+    setTimeout(() => {
+      setBoard(prev => {
+        const newBoard = [...prev.map(row => [...row])];
+        newBoard[ratx][raty] = false;
+        return newBoard;
+      });
+    }, 700);
   };
 
   const handleSmack = (rowId: number, colId: number) => {
@@ -128,7 +141,13 @@ export default function WhackAMole() {
         </div>
         <div className='flex justify-between items-center text-2xl'>
           <p className='font-semibold'>SCORE: {score}</p>
-          <p className='text-red-500 font-bold'>{isGameover && 'YOU DIED 💀🐀🐀🐀'}</p>
+          <p className='text-red-500 font-bold'>
+            {isGameover && (
+              <>
+                <span>GAMEOVER YOU SCORED: {score}</span>
+              </>
+            )}
+          </p>
         </div>
       </div>
     </div>

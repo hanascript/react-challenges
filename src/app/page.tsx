@@ -10,6 +10,7 @@ export default function Home() {
     { name: 'gradient-tool' },
     { name: 'tictactoe' },
     { name: 'whackamole' },
+    { name: 'quiz' },
   ];
 
   return (
